@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм (простой)»
 
 * Студент: [Aleksey Yakovlev](https://up.htmlacademy.ru/javascript/27/user/2041611).
-* Наставник: `Неизвестно`.
+* Наставник: [Anastasia Polozova](https://htmlacademy.ru/profile/id258631).
 
 ---
 
