@@ -14,11 +14,11 @@ function randomNumber (min, max) {
     return NaN;
   }
 
-  let lower = Math.ceil(Math.min(min, max));
-  let upper = Math.floor(Math.max(min, max));
+  const lower = Math.ceil(Math.min(min, max));
+  const upper = Math.floor(Math.max(min, max));
 
   // формула расчёта взята с сайта https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-  let result = Math.floor(Math.random() * (upper - lower + 1) + lower);
+  const result = Math.floor(Math.random() * (upper - lower + 1) + lower);
   return result;
 }
 
