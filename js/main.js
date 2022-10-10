@@ -9,12 +9,14 @@ function randomNumber (min, max) {
   // формула расчёта взята с сайта https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
-};
+}
 
 function stringLength (string, maxLength) {
   const result = string.length <= maxLength;
   return result;
-};
+}
+
+stringLength();
 
 const PHOTOS_DESCRIPTIONS_ARRAY = [
   'Всё отлично!',
@@ -29,16 +31,14 @@ const SIMILAR_PHOTO_COUNT = 25;
 
 const getRandomArrayElement = (elements) => elements[randomNumber(0, elements.length - 1)];
 
-const createPhoto = () => {
-  return {
-    id: randomNumber(1, 25),
-    url: 'photos/' + randomNumber(1, 25) + '.jpg',
-    description: getRandomArrayElement(PHOTOS_DESCRIPTIONS_ARRAY),
-    likes: randomNumber(15, 200),
-    comments: randomNumber(0, 200),
-  };
-};
+const createPhoto = () => ({
+  id: randomNumber(1, 25),
+  url: `photos/${randomNumber(1, 25)}.jpg`,
+  description: getRandomArrayElement(PHOTOS_DESCRIPTIONS_ARRAY),
+  likes: randomNumber(15, 200),
+  comments: randomNumber(0, 200),
+});
 
 const similarPhoto = Array.from({length: SIMILAR_PHOTO_COUNT}, createPhoto);
 
-console.log(similarPhoto);
+similarPhoto();
