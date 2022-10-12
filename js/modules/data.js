@@ -1,5 +1,3 @@
-import {randomNumber, getRandomArrayElement} from './utils/util.js';
-
 const PHOTOS_DESCRIPTIONS_ARRAY = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -11,14 +9,4 @@ const PHOTOS_DESCRIPTIONS_ARRAY = [
 
 const SIMILAR_PHOTO_COUNT = 25;
 
-const createPhoto = () => ({
-  id: randomNumber(1, 25),
-  url: `photos/${randomNumber(1, 25)}.jpg`,
-  description: getRandomArrayElement(PHOTOS_DESCRIPTIONS_ARRAY),
-  likes: randomNumber(15, 200),
-  comments: randomNumber(0, 200),
-});
-
-const createPhotos = () => Array.from({length: SIMILAR_PHOTO_COUNT}, createPhoto);
-
-export {createPhotos};
+export {PHOTOS_DESCRIPTIONS_ARRAY, SIMILAR_PHOTO_COUNT};
