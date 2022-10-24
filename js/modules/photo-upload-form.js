@@ -1,4 +1,4 @@
-import { uploadModalCloseClickHandler } from '../utils/upload-modal.js';
+import { onUploadModalCloseClick } from '../utils/upload-modal.js';
 import { resetFileInput } from './file-upload.js';
 
 const photoUploadForm = document.querySelector('.img-upload__form');
@@ -10,16 +10,18 @@ photoUploadForm.addEventListener('submit', (evt) => {
 
   const isValid = pristine.validate();
   if (isValid) {
-    // console.log('Можно отправлять');
+    //eslint-disable-next-line no-console
+    console.log('Можно отправлять');
   } else {
-    // console.log('Форма невалидна!');
+    //eslint-disable-next-line no-console
+    console.log('Форма невалидна!');
   }
 });
 
 function resetUploadForm() {
   photoUploadForm.reset();
 
-  uploadModalCloseClickHandler();
+  onUploadModalCloseClick();
   resetFileInput();
 }
 

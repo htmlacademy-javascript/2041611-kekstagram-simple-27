@@ -1,4 +1,4 @@
-import { uploadModalOpen } from '../utils/upload-modal';
+import { uploadModalOpen } from '../utils/upload-modal.js';
 
 const photoUploadForm = document.querySelector('.img-upload__form');
 const photoInput = photoUploadForm.querySelector('.img-upload__input');

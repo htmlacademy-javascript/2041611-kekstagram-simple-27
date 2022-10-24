@@ -1,4 +1,4 @@
-import { isEscapeEvent } from './escape-event';
+import { isEscapeEvent } from './escape-event.js';
 
 const body = document.querySelector('body');
 const uploadOverlay = document.querySelector('.img-upload__overlay');

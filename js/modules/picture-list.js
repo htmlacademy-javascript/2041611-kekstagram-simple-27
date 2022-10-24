@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger, generateRandomUniqueInteger, getRandomArrayElement} from './utils/util.js';
+import {getRandomPositiveInteger, generateRandomUniqueInteger, getRandomArrayElement} from '../utils/util.js';
 import {PHOTOS_DESCRIPTIONS_ARRAY, SIMILAR_PHOTO_COUNT} from './data.js';
 
 // функция создания фотографии
