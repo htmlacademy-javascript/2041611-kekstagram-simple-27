@@ -28,11 +28,6 @@ function createRandomUniqueInteger (min, max) {
   };
 }
 
-// function stringLength (string, maxLength) {
-//   const result = string.length <= maxLength;
-//   return result;
-// }
-
 const generateRandomUniqueInteger = createRandomUniqueInteger(1, 25);
 
 const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];

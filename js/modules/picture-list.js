@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger, generateRandomUniqueInteger, getRandomArrayElement} from './utils/util.js';
+import {getRandomPositiveInteger, generateRandomUniqueInteger, getRandomArrayElement} from '../utils/util.js';
 import {PHOTOS_DESCRIPTIONS_ARRAY, SIMILAR_PHOTO_COUNT} from './data.js';
 
 // функция создания фотографии
@@ -11,8 +11,6 @@ const createPhoto = () => ({
 });
 
 const createPhotos = () => Array.from({length: SIMILAR_PHOTO_COUNT}, createPhoto);
-
-export {createPhotos};
 
 // создание DOM-элементов, соответствующих фотографиям с заполненными их данными
 const picturesContainer = document.querySelector('.pictures');
@@ -33,4 +31,12 @@ function createPictureList(pictureData) {
   picturesContainer.append(pictureListFragment);
 }
 
-createPictureList();
+function renderPictureList(pictureData) {
+  createPictureList(pictureData);
+}
+
+function removeOldPictureList() {
+  picturesContainer.querySelectorAll('.picture').forEach((item) => item.remove());
+}
+
+export {createPhotos, createPictureList, renderPictureList, removeOldPictureList};
