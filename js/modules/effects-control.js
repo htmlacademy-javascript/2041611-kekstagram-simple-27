@@ -157,3 +157,5 @@ effectsList.addEventListener('change', (evt) => {
     updateSliderOptions(sliderOptions[targetEffect], DEFAULT_START_VALUE, 'block');
   }
 });
+
+export {resetEffectSettings};

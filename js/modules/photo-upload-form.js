@@ -1,3 +1,5 @@
+import { sendPhotos } from '../utils/api.js';
+import { openAlert } from '../utils/popup-alert.js';
 import { onUploadModalCloseClick } from '../utils/upload-modal.js';
 import { resetFileInput } from './file-upload.js';
 
@@ -16,6 +18,18 @@ photoUploadForm.addEventListener('submit', (evt) => {
     //eslint-disable-next-line no-console
     console.log('Форма невалидна!');
   }
+
+  sendPhotos(
+    () => {
+      resetUploadForm();
+      openAlert('Success');
+    },
+    () => {
+      resetUploadForm();
+      openAlert('Error');
+    },
+    new FormData(photoUploadForm),
+  );
 });
 
 function resetUploadForm() {

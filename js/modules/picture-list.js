@@ -1,42 +1,42 @@
-import {getRandomPositiveInteger, generateRandomUniqueInteger, getRandomArrayElement} from '../utils/util.js';
-import {PHOTOS_DESCRIPTIONS_ARRAY, SIMILAR_PHOTO_COUNT} from './data.js';
-
-// функция создания фотографии
-const createPhoto = () => ({
-  id: generateRandomUniqueInteger(),
-  url: `photos/${generateRandomUniqueInteger()}.jpg`,
-  description: getRandomArrayElement(PHOTOS_DESCRIPTIONS_ARRAY),
-  likes: getRandomPositiveInteger(15, 200),
-  comments: getRandomPositiveInteger(0, 200),
-});
-
-const createPhotos = () => Array.from({length: SIMILAR_PHOTO_COUNT}, createPhoto);
+import { getPhotos } from '../utils/api.js';
+import { openAlert } from '../utils/popup-alert.js';
 
 // создание DOM-элементов, соответствующих фотографиям с заполненными их данными
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
+function removeOLdPictureList() {
+  picturesContainer.querySelectorAll('.picture').forEach((item) => item.remove());
+}
+
 function createPictureList(pictureData) {
   const pictureListFragment = document.createDocumentFragment();
+  removeOLdPictureList();
 
-  pictureData.forEach(({url, likes, comments}) => {
+  pictureData.forEach(({id, url, likes, comments}) => {
     const picture = pictureTemplate.cloneNode(true);
 
+    picture.href = `#${id}`;
     picture.querySelector('.picture__img').src = url;
     picture.querySelector('.picture__comments').textContent = comments.length;
     picture.querySelector('.picture__likes').textContent = likes;
+
     pictureListFragment.append(picture);
   });
 
   picturesContainer.append(pictureListFragment);
 }
 
-function renderPictureList(pictureData) {
-  createPictureList(pictureData);
+function getPictureList() {
+  getPhotos()
+    .then((data) => {
+      createPictureList(data);
+    })
+    .catch(() => {
+      openAlert('Error', 'Ошибка загрузки данных с сервера', 'Закрыть');
+    });
 }
 
-function removeOldPictureList() {
-  picturesContainer.querySelectorAll('.picture').forEach((item) => item.remove());
-}
+getPictureList();
 
-export {createPhotos, createPictureList, renderPictureList, removeOldPictureList};
+export {getPictureList};
