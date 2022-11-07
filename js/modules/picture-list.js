@@ -1,5 +1,5 @@
 import { getPhotos } from '../utils/api.js';
-import { openAlert } from '../utils/popup-alert.js';
+import { showErrorMessage } from '../utils/data-sending-message.js';
 
 // создание DOM-элементов, соответствующих фотографиям с заполненными их данными
 const picturesContainer = document.querySelector('.pictures');
@@ -33,7 +33,7 @@ function getPictureList() {
       createPictureList(data);
     })
     .catch(() => {
-      openAlert('Error', 'Ошибка загрузки данных с сервера', 'Закрыть');
+      showErrorMessage('Не удалось отправить форму!');
     });
 }
 

@@ -1,5 +1,5 @@
 import { sendPhotos } from '../utils/api.js';
-import { openAlert } from '../utils/popup-alert.js';
+import { showSuccessMessage, showErrorMessage } from '../utils/data-sending-message.js';
 import { onUploadModalCloseClick } from '../utils/upload-modal.js';
 import { resetFileInput } from './file-upload.js';
 
@@ -22,11 +22,11 @@ photoUploadForm.addEventListener('submit', (evt) => {
   sendPhotos(
     () => {
       resetUploadForm();
-      openAlert('Success');
+      showSuccessMessage();
     },
     () => {
       resetUploadForm();
-      openAlert('Error');
+      showErrorMessage('Не удалось отправить форму!');
     },
     new FormData(photoUploadForm),
   );
@@ -38,5 +38,3 @@ function resetUploadForm() {
   onUploadModalCloseClick();
   resetFileInput();
 }
-
-resetUploadForm();

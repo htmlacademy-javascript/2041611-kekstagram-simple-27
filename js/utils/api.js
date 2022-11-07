@@ -1,3 +1,5 @@
+import { showSuccessMessage, showErrorMessage } from './data-sending-message.js';
+
 const url = {
   POST: 'https://27.javascript.pages.academy/kekstagram-simple',
   GET: 'https://27.javascript.pages.academy/kekstagram-simple/data',
@@ -15,10 +17,10 @@ async function getPhotos() {
     return await response.json();
   }
 
-  throw new Error(`Ошибка: ${response.status} - ${response.statusText} `);
+  throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
 }
 
-function sendPhotos(onSuccess, onFail, body) {
+function sendPhotos(body) {
   fetch(url.POST,
     {
       method: 'POST',
@@ -28,12 +30,14 @@ function sendPhotos(onSuccess, onFail, body) {
   )
     .then((response) => {
       if (response.ok) {
-        onSuccess();
+        showSuccessMessage();
       } else {
-        onFail();
+        showErrorMessage('Не удалось отправить форму!');
       }
     })
-    .catch(() => onFail());
+    .catch(() => {
+      showErrorMessage('Не удалось отправить форму!');
+    });
 }
 
 export {getPhotos, sendPhotos};
