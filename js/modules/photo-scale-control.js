@@ -3,9 +3,7 @@ const scaleSmallerButton = document.querySelector('.scale__control--smaller');
 const scaleBiggerButton = document.querySelector('.scale__control--bigger');
 const photoPreview = document.querySelector('.img-upload__preview img');
 
-const MIN_SCALE_VALUE = 25;
-const MAX_SCALE_VALUE = 100;
-const DEFAULT_SCALE_STEP = 25;
+const DEFAULT_SCALE_STEP = 25, MIN_SCALE_VALUE = 25, MAX_SCALE_VALUE = 100;
 
 function setScaleOnPicture() {
   const currentValue = parseFloat(scaleCounter.value);
