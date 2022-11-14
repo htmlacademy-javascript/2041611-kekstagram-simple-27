@@ -1,10 +1,10 @@
-const url = {
+const Url = {
   POST: 'https://27.javascript.pages.academy/kekstagram-simple',
   GET: 'https://27.javascript.pages.academy/kekstagram-simple/data',
 };
 
 async function getPhotos() {
-  const response = await fetch(url.GET,
+  const response = await fetch(Url.GET,
     {
       method: 'GET',
       credentials: 'same-origin',
@@ -19,7 +19,7 @@ async function getPhotos() {
 }
 
 const sendPhotos = (onSuccess, onFail, body) => {
-  fetch(url.POST,
+  fetch(Url.POST,
     {
       method: 'POST',
       body,
