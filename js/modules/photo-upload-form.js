@@ -4,32 +4,44 @@ import { onUploadModalCloseClick } from '../utils/upload-modal.js';
 import { resetFileInput } from './file-upload.js';
 
 const photoUploadForm = document.querySelector('.img-upload__form');
+const submitButtonForm = document.querySelector('.img-upload__submit');
 
-const pristine = new Pristine(photoUploadForm);
+const pristine = new Pristine(photoUploadForm, {
+  classTo: 'img-upload__text',
+  errorTextParent: 'img-upload__text',
+  errorTextClass: 'img-upload__text_error',
+});
+
+const blockSubmitButton = () => {
+  submitButtonForm.disabled = true;
+  submitButtonForm.textContent = 'Сохраняю...';
+};
+
+const unblockSubmitButton = () => {
+  submitButtonForm.disabled = false;
+  submitButtonForm.textContent = 'Сохранить';
+};
 
 photoUploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
   const isValid = pristine.validate();
   if (isValid) {
-    //eslint-disable-next-line no-console
-    console.log('Можно отправлять');
-  } else {
-    //eslint-disable-next-line no-console
-    console.log('Форма невалидна!');
+    blockSubmitButton();
+    sendPhotos(
+      () => {
+        resetUploadForm();
+        showSuccessMessage();
+        unblockSubmitButton();
+      },
+      () => {
+        resetUploadForm();
+        showErrorMessage('Не удалось отправить форму!');
+        unblockSubmitButton();
+      },
+      new FormData(photoUploadForm),
+    );
   }
-
-  sendPhotos(
-    () => {
-      resetUploadForm();
-      showSuccessMessage();
-    },
-    () => {
-      resetUploadForm();
-      showErrorMessage('Не удалось отправить форму!');
-    },
-    new FormData(photoUploadForm),
-  );
 });
 
 function resetUploadForm() {

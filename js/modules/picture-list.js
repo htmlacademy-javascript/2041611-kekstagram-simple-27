@@ -33,7 +33,7 @@ function getPictureList() {
       createPictureList(data);
     })
     .catch(() => {
-      showErrorMessage('Не удалось отправить форму!');
+      showErrorMessage('Фотографии отсутствуют...печалька!-(');
     });
 }
 

@@ -3,13 +3,13 @@ import { resetFileInput } from '../modules/file-upload.js';
 import { resetScaleModifier } from '../modules/photo-scale-control.js';
 import { isEscapeEvent } from './escape-event.js';
 
-const photoUploadForm = document.querySelector('.img-upload__form');
 const body = document.querySelector('body');
+const photoUploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const closeButton = document.querySelector('#upload-cancel');
 
 function onEscCloseKey(evt) {
-  const inputFocus = evt.target.matches('input:focus') || evt.target.matches('textarea:focus');
+  const inputFocus = evt.target.matches('textarea:focus');
 
   if (inputFocus) {
     return false;
